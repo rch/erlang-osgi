@@ -1,0 +1,6 @@
+example:
+> javac -cp ../felix/bin/felix.jar:../Workspace/felix-otp/lib/org.apache.felix.eventadmin-1.2.2.jar:OtpErlang.jar -d byt src/couch/*.java
+
+> jar cfm couch.jar src/couch/manifest.mf -C byt core
+
+> mv couch.jar ../felix/bundle/
