@@ -1,0 +1,25 @@
+#! /usr/bin/env escript
+%% -*- erlang -*-
+%%! -smp enable -sname couchext@localhost -setcookie YOURCOOKIE
+-mode(compile).
+-export([cmd/0, rsp/1]).
+
+rsp(Ref) ->
+    receive
+        {Ref, Data} ->
+            Msg = lib:nonl(Data),
+            io:format("{\"code\":200,\"json\":{\"OK\":~s},\"headers\":{\"Content-Type\":\"text/plain\"}}~n", [Msg])
+    end.
+            
+cmd() ->
+    case io:get_line(standard_io, "") of
+        eof -> ok;
+        Data ->
+            Ref = make_ref(),
+            Pid = spawn(fun() -> rsp(Ref) end),
+            {req, osgi@localhost} ! {Pid, Ref, Data},
+            cmd()
+    end.
+    
+main(_) -> 
+    cmd().

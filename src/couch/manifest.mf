@@ -1,0 +1,9 @@
+Bundle-Name: External Request Processor
+Bundle-Description: A bundle for processing external requests
+Bundle-Vendor: Nobody
+Bundle-Version: 0.0.1
+Bundle-Activator: core.Activator
+Bundle-ClassPath: OtpErlang.jar
+Export-Package: core.service
+Import-Package: com.ericsson.otp.erlang,org.osgi.service.event,org.osgi.framework
+
