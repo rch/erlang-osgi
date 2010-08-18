@@ -17,6 +17,9 @@ USAGE:
 1) Open a new terminal and cd to the couchext-osgi/lib directory
 2) Ensure the escript 'couchlib' uses your local erlang cookie and has the necessary permissions
 3) Run the escript and enter some text, you should see the response from the osgi node
-4) Configure couchdb to treat couchlib as an external process handler (detalis on the couchdb wiki)
+4) Configure couchdb to treat couchlib as an external process handler (details on the couchdb wiki)
 5) When you open the configured URL in a browser, you should see the JSON request from couch echo to the screen 
 6) Make some useful bundles
+
+TODO:
+-- switch to concurrent collections objects
