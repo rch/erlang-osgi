@@ -16,7 +16,7 @@ public class Activator implements BundleActivator
 {
 	public static String LOCAL_NODE_NAME = "osgi@localhost";
 	
-	public static String OTHER_NODE_NAME = "couchext@localhost";
+	public static String OTHER_NODE_NAME = "erlang@localhost";
 	
 	private BundleContext context;
 	

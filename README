@@ -26,8 +26,19 @@ INSTALL:
 
 USAGE:
 1) Open a new terminal and cd to the erlang-osgi/lib directory
-2) Ensure the escript 'msglib' uses your local erlang cookie and has the necessary permissions
+2) Ensure the escript 'msglib' uses your local erlang cookie
+    > erl -smp enable -sname osgi@localhost
+    Eshell V5.10.4  (abort with ^G)
+    (osgi@localhost)1> erlang:get_cookie().
+    'YOURCOOKIE'
+    # replace YOURCOOKIE in the msglib text file with the actual value
+
 3) Run the escript and enter some text, you should see the response from the osgi node
+    > chmod +x msglib 
+    > ./msglib 
+    > chk
+    {"code":200,"json":{"OK":chk},"headers":{"Content-Type":"text/plain"}}
+    
 
 TODO:
 -- switch to concurrent collections objects

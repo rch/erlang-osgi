@@ -1,6 +1,6 @@
 #! /usr/bin/env escript
 %% -*- erlang -*-
-%%! -smp enable -sname erlangosgi@localhost -setcookie YOURCOOKIE
+%%! -smp enable -sname erlang@localhost -setcookie YOURCOOKIE
 -mode(compile).
 -export([cmd/0, rsp/1]).
 
