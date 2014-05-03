@@ -17,7 +17,11 @@ public class ResponseHandler implements EventHandler
 	public void handleEvent(ResponseObject response) {
 		ServiceReference response_broker = context.getServiceReference(ResponseBroker.class.getName());
 		ResponseBroker rspBroker = (ResponseBroker) context.getService(response_broker);
-		
+		/**
+		 * TODO deocde the OtpErlangObject message and process its contents
+		 * 
+		 * update the response after processing and send back to the broker 
+		 */
 		rspBroker.sendMessage(response.pid, response.ref, response.msg);
 	}
 
