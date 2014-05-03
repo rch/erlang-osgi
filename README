@@ -1,25 +1,33 @@
 INSTALL:
-1) Unpack a current Apache Felix distribution to 
-2) Add bundles for Event Admin and Config Admin to the bundle directory
-3) Use bnd to create a bundle from the jinterface jar included with Erlang, and add the resulting jar to the bundle directory
+
+1) Download and unpack a current Apache Felix distribution and rename the framework directory to 'felix' in the erlang-osgi directory
+
+2) Download bundles for Event Admin and Config Admin to felix/bundle
+
+3) Use bnd to create a bundle from the jinterface package (OtpErlang.jar) included with Erlang (you may have t build from source)
+    > java -jar biz.aQute.bnd-2.3.0.jar wrap -o OtpErlangOSGi.jar OtpErlang.jar
+    
 4) It is not used yet, but you might as well add the current Jackson distribution to the bundle directory (it is already a valid bundle)
-5) Compile couchext-osgi (the 'byt' directory must exist)
- > javac -cp ../felix/bin/felix.jar:../felix/bundle/org.apache.felix.eventadmin-1.2.2.jar:../felix/bundle/OtpErlang.jar -d byt src/couch/*.java
+
+5) Compile erlang-osgi (the 'byt' directory must exist)
+    > javac -cp felix/bin/felix.jar:felix/bundle/org.apache.felix.eventadmin-1.3.2.jar:felix/bundle/OtpErlangOSGi.jar -d bin src/core/*.java src/core/service/*.java
+ 
 6) jar it up
- > jar cfm couchext.jar src/couch/manifest.mf -C byt core
+    > jar cfm erlang-osgi.jar src/core/manifest.mf -C bin core core/service
+    
 7) deploy that to the felix bundle directory as well
- > mv couchext.jar ../felix/bundle/
+    > mv erlang-osgi.jar felix/bundle/
+
 8) cd to the felix directory and start the framework
- > java -jar bin/felix.jar
+    > cd felix
+    > java -jar bin/felix.jar
+
 9) type 'felix:lb' to make sure the necessary bundles are installed and activated
 
 USAGE:
-1) Open a new terminal and cd to the couchext-osgi/lib directory
-2) Ensure the escript 'couchlib' uses your local erlang cookie and has the necessary permissions
+1) Open a new terminal and cd to the erlang-osgi/lib directory
+2) Ensure the escript 'msglib' uses your local erlang cookie and has the necessary permissions
 3) Run the escript and enter some text, you should see the response from the osgi node
-4) Configure couchdb to treat couchlib as an external process handler (details on the couchdb wiki)
-5) When you open the configured URL in a browser, you should see the JSON request from couch echo to the screen 
-6) Make some useful bundles
 
 TODO:
 -- switch to concurrent collections objects
